@@ -4,24 +4,31 @@
 #
 Name     : R-triebeard
 Version  : 0.3.0
-Release  : 6
+Release  : 7
 URL      : https://cran.r-project.org/src/contrib/triebeard_0.3.0.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/triebeard_0.3.0.tar.gz
 Summary  : 'Radix' Trees in 'Rcpp'
 Group    : Development/Tools
 License  : MIT
-Requires: R-triebeard-lib
+Requires: R-triebeard-lib = %{version}-%{release}
 Requires: R-Rcpp
+Requires: R-assertthat
+Requires: R-cli
 Requires: R-markdown
-Requires: R-stringi
+Requires: R-withr
 BuildRequires : R-Rcpp
+BuildRequires : R-assertthat
+BuildRequires : R-cli
 BuildRequires : R-markdown
-BuildRequires : R-stringi
-BuildRequires : clr-R-helpers
+BuildRequires : R-withr
+BuildRequires : buildreq-R
 
 %description
-to hash tables. 'triebeard' provides an implementation of 'radix trees' for use in R programming and in
-             developing packages with 'Rcpp'.
+##triebeard
+Fast key-value matching in R and Rcpp
+__Author:__ Oliver Keyes, Drew Schmidt, Yuuki Takano<br/>
+__License:__ [MIT](http://opensource.org/licenses/MIT)<br/>
+__Status:__ Stable
 
 %package lib
 Summary: lib components for the R-triebeard package.
@@ -39,11 +46,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1530284702
+export SOURCE_DATE_EPOCH=1552842460
 
 %install
+export SOURCE_DATE_EPOCH=1552842460
 rm -rf %{buildroot}
-export SOURCE_DATE_EPOCH=1530284702
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
 export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -61,9 +68,9 @@ echo "FFLAGS = $FFLAGS -march=haswell -ftree-vectorize " >> ~/.R/Makevars
 echo "CXXFLAGS = $CXXFLAGS -march=haswell -ftree-vectorize " >> ~/.R/Makevars
 R CMD INSTALL --install-tests --built-timestamp=${SOURCE_DATE_EPOCH} --build  -l %{buildroot}/usr/lib64/R/library triebeard
 for i in `find %{buildroot}/usr/lib64/R/ -name "*.so"`; do mv $i $i.avx2 ; mv $i.avx2 ~/.stash/; done
-echo "CFLAGS = $CFLAGS -march=skylake-avx512 -ftree-vectorize -mprefer-vector-width=512 " > ~/.R/Makevars
-echo "FFLAGS = $FFLAGS -march=skylake-avx512 -ftree-vectorize -mprefer-vector-width=512 " >> ~/.R/Makevars
-echo "CXXFLAGS = $CXXFLAGS -march=skylake-avx512 -ftree-vectorize -mprefer-vector-width=512  " >> ~/.R/Makevars
+echo "CFLAGS = $CFLAGS -march=skylake-avx512 -ftree-vectorize " > ~/.R/Makevars
+echo "FFLAGS = $FFLAGS -march=skylake-avx512 -ftree-vectorize " >> ~/.R/Makevars
+echo "CXXFLAGS = $CXXFLAGS -march=skylake-avx512 -ftree-vectorize " >> ~/.R/Makevars
 R CMD INSTALL --preclean --install-tests --no-test-load --built-timestamp=${SOURCE_DATE_EPOCH} --build  -l %{buildroot}/usr/lib64/R/library triebeard
 for i in `find %{buildroot}/usr/lib64/R/ -name "*.so"`; do mv $i $i.avx512 ; mv $i.avx512 ~/.stash/; done
 echo "CFLAGS = $CFLAGS -ftree-vectorize " > ~/.R/Makevars
@@ -78,8 +85,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
-R CMD check --no-manual --no-examples --no-codoc -l %{buildroot}/usr/lib64/R/library triebeard|| : 
-cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
+R CMD check --no-manual --no-examples --no-codoc  triebeard || :
 
 
 %files
@@ -117,7 +123,14 @@ cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 /usr/lib64/R/library/triebeard/include/radix/radix_tree.hpp
 /usr/lib64/R/library/triebeard/include/radix/radix_tree_it.hpp
 /usr/lib64/R/library/triebeard/include/radix/radix_tree_node.hpp
-/usr/lib64/R/library/triebeard/libs/symbols.rds
+/usr/lib64/R/library/triebeard/tests/testthat.R
+/usr/lib64/R/library/triebeard/tests/testthat/test_alter.R
+/usr/lib64/R/library/triebeard/tests/testthat/test_convert.R
+/usr/lib64/R/library/triebeard/tests/testthat/test_create.R
+/usr/lib64/R/library/triebeard/tests/testthat/test_get.R
+/usr/lib64/R/library/triebeard/tests/testthat/test_greedy.R
+/usr/lib64/R/library/triebeard/tests/testthat/test_longest.R
+/usr/lib64/R/library/triebeard/tests/testthat/test_prefix.R
 
 %files lib
 %defattr(-,root,root,-)
