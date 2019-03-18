@@ -1,4 +1,9 @@
 # This file contains recursive sources that require this package
+R-natserv
+R-ritis
 R-rredlist
 R-taxize
 R-urltools
+R-vcr
+R-wikitaxa
+R-worrms

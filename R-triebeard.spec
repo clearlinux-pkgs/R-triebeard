@@ -4,7 +4,7 @@
 #
 Name     : R-triebeard
 Version  : 0.3.0
-Release  : 9
+Release  : 10
 URL      : https://cran.r-project.org/src/contrib/triebeard_0.3.0.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/triebeard_0.3.0.tar.gz
 Summary  : 'Radix' Trees in 'Rcpp'
@@ -41,10 +41,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1552850325
+export SOURCE_DATE_EPOCH=1552925304
 
 %install
-export SOURCE_DATE_EPOCH=1552850325
+export SOURCE_DATE_EPOCH=1552925304
 rm -rf %{buildroot}
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
