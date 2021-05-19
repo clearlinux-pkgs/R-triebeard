@@ -4,7 +4,7 @@
 #
 Name     : R-triebeard
 Version  : 0.3.0
-Release  : 24
+Release  : 25
 URL      : https://cran.r-project.org/src/contrib/triebeard_0.3.0.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/triebeard_0.3.0.tar.gz
 Summary  : 'Radix' Trees in 'Rcpp'
