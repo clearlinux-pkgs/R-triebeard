@@ -1,9 +1,25 @@
-Version 0.3.0
+
+
+
+Version 0.4.1
 =================================
 
 DEVELOPMENT
 
+* Replace C++17-deprecated features
+
+Version 0.3.1
+=================================
+
+MINOR
+
+* Accomodated knitr breaking change
+* Updated maintainer
+
+DEVELOPMENT
+
 * Internal refactoring using templates has drastically reduced the size of the codebase
+* Options to include the keys, as well as values, of matches have been incorporated (#13)
 
 Version 0.2.1
 =================================
