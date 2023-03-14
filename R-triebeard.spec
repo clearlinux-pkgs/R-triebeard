@@ -4,7 +4,7 @@
 #
 Name     : R-triebeard
 Version  : 0.4.1
-Release  : 37
+Release  : 38
 URL      : https://cran.r-project.org/src/contrib/triebeard_0.4.1.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/triebeard_0.4.1.tar.gz
 Summary  : 'Radix' Trees in 'Rcpp'
@@ -14,9 +14,6 @@ Requires: R-triebeard-lib = %{version}-%{release}
 Requires: R-Rcpp
 BuildRequires : R-Rcpp
 BuildRequires : buildreq-R
-# Suppress stripping binaries
-%define __strip /bin/true
-%define debug_package %{nil}
 
 %description
 to hash tables. 'triebeard' provides an implementation of 'radix trees' for use in R programming and in
@@ -39,10 +36,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1677980159
+export SOURCE_DATE_EPOCH=1678827775
 
 %install
-export SOURCE_DATE_EPOCH=1677980159
+export SOURCE_DATE_EPOCH=1678827775
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
